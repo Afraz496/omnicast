@@ -1,6 +1,6 @@
 """Automatic, interval-aware time-series forecasting."""
 
-from .auto import AutoForecaster
+from .auto import AutoForecaster, EnsembleForecaster
 from .base import BaseForecaster
 from .evaluation import Backtester, backtest
 from .metrics import mae, mape, rmse, smape
@@ -28,6 +28,7 @@ __all__ = [
     "BaseForecaster",
     "DriftForecaster",
     "ETSForecaster",
+    "EnsembleForecaster",
     "ForecastResult",
     "LSTMForecaster",
     "MeanForecaster",
