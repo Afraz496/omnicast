@@ -164,6 +164,7 @@ class ARIMAForecaster(BaseForecaster):
         self.residuals_ = (self.y_ - self.fitted_values_).rename("residual")
         self.sigma2_ = float(np.nanmean(np.square(self.residuals_)))
         self.n_obs_, self.is_fitted_ = len(self.y_), True
+        self._future_exog_ = None
         return self
 
     def predict(self, horizon, X=None, level=(80, 95)):
@@ -177,7 +178,9 @@ class ARIMAForecaster(BaseForecaster):
         return np.asarray(self.result_.fittedvalues)
 
     def _forecast(self, horizon: int) -> tuple[np.ndarray, np.ndarray]:
-        prediction = self.result_.get_forecast(horizon, exog=self._future_exog_)
+        prediction = self.result_.get_forecast(
+            horizon, exog=getattr(self, "_future_exog_", None)
+        )
         return np.asarray(prediction.predicted_mean), np.asarray(prediction.se_mean)
 
 
