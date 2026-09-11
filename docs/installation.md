@@ -4,11 +4,17 @@
 pip install omnicast
 ```
 
-`LSTMForecaster` depends on PyTorch, which is kept out of the base install because
-it is a large, optional dependency:
+Heavy dependencies are kept out of the base install because they are large and optional:
 
 ```bash
+# PyTorch for LSTMForecaster
 pip install omnicast[torch]
+
+# Google TimesFM foundation model
+pip install omnicast[timesfm]
+
+# All optional dependencies
+pip install omnicast[all]
 ```
 
 ## Local development
@@ -16,9 +22,10 @@ pip install omnicast[torch]
 The project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
 ```bash
-uv sync --extra dev            # core + test/lint tooling
-uv sync --extra dev --extra torch   # also install LSTMForecaster's dependency
-uv sync --extra docs           # sphinx + theme, to build this site
+uv sync --extra dev                          # core + test/lint tooling
+uv sync --extra dev --extra torch            # also install LSTMForecaster's dependency
+uv sync --extra dev --extra timesfm          # also install TimesFM's dependency
+uv sync --extra docs                         # sphinx + theme, to build this site
 ```
 
 Run the test suite and linter:
