@@ -14,6 +14,7 @@ from .models import (
     NaiveForecaster,
     SeasonalNaiveForecaster,
     ThetaForecaster,
+    TimesFMForecaster,
 )
 from .plotting import plot_backtest, plot_metric_by_horizon
 from .result import BacktestResult, ForecastResult
@@ -34,6 +35,7 @@ __all__ = [
     "NaiveForecaster",
     "SeasonalNaiveForecaster",
     "ThetaForecaster",
+    "TimesFMForecaster",
     "backtest",
     "mae",
     "mape",
@@ -42,3 +44,4 @@ __all__ = [
     "rmse",
     "smape",
 ]
+

@@ -2,6 +2,7 @@ from .baselines import DriftForecaster, MeanForecaster, NaiveForecaster, Seasona
 from .lstm import LSTMForecaster
 from .statistical import ARIMAForecaster, AutoARIMAForecaster, ETSForecaster
 from .theta import ThetaForecaster
+from .timesfm import TimesFMForecaster
 
 __all__ = [
     "ARIMAForecaster",
@@ -13,4 +14,6 @@ __all__ = [
     "NaiveForecaster",
     "SeasonalNaiveForecaster",
     "ThetaForecaster",
+    "TimesFMForecaster",
 ]
+
