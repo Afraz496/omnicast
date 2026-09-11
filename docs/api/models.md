@@ -60,3 +60,13 @@
    :undoc-members:
    :show-inheritance:
 ```
+
+## Foundation models (optional, timesfm)
+
+```{eval-rst}
+.. autoclass:: omnicast.TimesFMForecaster
+   :members:
+   :undoc-members:
+   :show-inheritance:
+```
+
