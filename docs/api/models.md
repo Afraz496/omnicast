@@ -59,6 +59,11 @@
    :members:
    :undoc-members:
    :show-inheritance:
+
+.. autoclass:: omnicast.DeepARForecaster
+   :members:
+   :undoc-members:
+   :show-inheritance:
 ```
 
 ## Foundation models (optional, timesfm)

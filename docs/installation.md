@@ -7,7 +7,7 @@ pip install omnicast
 Heavy dependencies are kept out of the base install because they are large and optional:
 
 ```bash
-# PyTorch for LSTMForecaster
+# PyTorch for LSTMForecaster and DeepARForecaster
 pip install omnicast[torch]
 
 # Google TimesFM foundation model

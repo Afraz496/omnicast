@@ -28,7 +28,7 @@ uv run sphinx-build -b html docs docs/_build/html
 Heavy dependencies (PyTorch, TimesFM) are kept out of the base install:
 
 ```bash
-# For LSTMForecaster (PyTorch):
+# For LSTMForecaster & DeepARForecaster (PyTorch):
 pip install omnicast[torch]
 
 # For TimesFMForecaster (Google TimesFM foundation model):
@@ -78,6 +78,7 @@ Every fitted estimator exposes `fitted_values_`, `residuals_`, `sigma2_`, and `p
 | `ARIMAForecaster` | ARIMA/SARIMA, optional regressors | State-space forecast uncertainty |
 | `AutoARIMAForecaster` | AICc grid-selected ARIMA | State-space forecast uncertainty |
 | `LSTMForecaster` | Autoregressive LSTM (`torch`, optional) | Random-walk innovation scaling |
+| `DeepARForecaster` | Probabilistic autoregressive RNN (`torch`, optional) | Monte Carlo sample trajectory scaling |
 | `TimesFMForecaster` | Zero-shot foundation model (`timesfm`, optional) | Random-walk innovation scaling |
 | `AutoForecaster` | Rolling-origin model selection | Selected model's intervals |
 
@@ -101,6 +102,8 @@ This codebase is a Python implementation foundation, not a blanket claim of pari
 `ThetaForecaster` is the first R port: a compatible pure-Python reimplementation of `forecast::thetaf`'s classical Theta method, described in its own docstring along with the exact deviations from R's output (approximate intervals, no numerical parity fixtures yet).
 
 `LSTMForecaster` is the first wrapper around a Python deep-learning module (`torch`, optional dependency), following the same `BaseForecaster` interface as the statsmodels-backed models. It is not part of `AutoForecaster`'s default candidate list -- pass it explicitly via `AutoForecaster(models=[...])` -- since it is optional-dependency and materially slower to backtest.
+
+`DeepARForecaster` implements the DeepAR probabilistic autoregressive recurrent network (Salinas et al., `torch`, optional dependency). Unlike point-forecast LSTMs, it models the parameters of a predictive distribution with Gaussian Negative Log-Likelihood and simulates Monte Carlo trajectory rollouts for calibrated intervals. Like other neural models, it is kept out of `AutoForecaster`'s default candidates.
 
 `TimesFMForecaster` wraps Google Research's TimesFM zero-shot time-series foundation model (`timesfm`, optional dependency). By default it loads TimesFM 2.5 (`google/timesfm-2.5-200m-pytorch`), which is distributed under the Apache-2.0 license matching this project, and also supports TimesFM 3.0 checkpoints. Like `LSTMForecaster`, it is kept out of `AutoForecaster`'s default candidate list to preserve fast, lightweight local execution.
 
