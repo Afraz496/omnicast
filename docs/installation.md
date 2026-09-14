@@ -13,6 +13,9 @@ pip install omnicast[torch]
 # Google TimesFM foundation model
 pip install omnicast[timesfm]
 
+# Amazon Chronos foundation model
+pip install omnicast[chronos]
+
 # All optional dependencies
 pip install omnicast[all]
 ```
@@ -23,8 +26,9 @@ The project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
 ```bash
 uv sync --extra dev                          # core + test/lint tooling
-uv sync --extra dev --extra torch            # also install LSTMForecaster's dependency
+uv sync --extra dev --extra torch            # also install LSTM & DeepAR dependencies
 uv sync --extra dev --extra timesfm          # also install TimesFM's dependency
+uv sync --extra dev --extra chronos          # also install Chronos's dependency
 uv sync --extra docs                         # sphinx + theme, to build this site
 ```
 

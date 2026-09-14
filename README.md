@@ -34,11 +34,14 @@ pip install omnicast[torch]
 # For TimesFMForecaster (Google TimesFM foundation model):
 pip install omnicast[timesfm]
 
+# For ChronosForecaster (Amazon Chronos foundation model):
+pip install omnicast[chronos]
+
 # Or install all optional dependencies:
 pip install omnicast[all]
 
 # For development:
-uv sync --extra dev --extra torch --extra timesfm
+uv sync --extra dev --extra torch --extra timesfm --extra chronos
 ```
 
 ## Quick start
@@ -80,6 +83,7 @@ Every fitted estimator exposes `fitted_values_`, `residuals_`, `sigma2_`, and `p
 | `LSTMForecaster` | Autoregressive LSTM (`torch`, optional) | Random-walk innovation scaling |
 | `DeepARForecaster` | Probabilistic autoregressive RNN (`torch`, optional) | Monte Carlo sample trajectory scaling |
 | `TimesFMForecaster` | Zero-shot foundation model (`timesfm`, optional) | Random-walk innovation scaling |
+| `ChronosForecaster` | Zero-shot foundation model (`chronos`, optional) | Sample dispersion or residual scaling |
 | `AutoForecaster` | Rolling-origin model selection | Selected model's intervals |
 
 ## Evaluation
@@ -106,6 +110,8 @@ This codebase is a Python implementation foundation, not a blanket claim of pari
 `DeepARForecaster` implements the DeepAR probabilistic autoregressive recurrent network (Salinas et al., `torch`, optional dependency). Unlike point-forecast LSTMs, it models the parameters of a predictive distribution with Gaussian Negative Log-Likelihood and simulates Monte Carlo trajectory rollouts for calibrated intervals. Like other neural models, it is kept out of `AutoForecaster`'s default candidates.
 
 `TimesFMForecaster` wraps Google Research's TimesFM zero-shot time-series foundation model (`timesfm`, optional dependency). By default it loads TimesFM 2.5 (`google/timesfm-2.5-200m-pytorch`), which is distributed under the Apache-2.0 license matching this project, and also supports TimesFM 3.0 checkpoints. Like `LSTMForecaster`, it is kept out of `AutoForecaster`'s default candidate list to preserve fast, lightweight local execution.
+
+`ChronosForecaster` wraps Amazon Science's Chronos zero-shot time-series foundation models (`chronos-forecasting`, optional dependency). It converts time series into discrete tokens and predicts future steps autoregressively using pretrained transformer language models. Pretrained weights are Apache-2.0 licensed.
 
 ## Contributors
 
