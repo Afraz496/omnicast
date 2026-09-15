@@ -7,6 +7,7 @@ from .metrics import mae, mape, rmse, smape
 from .models import (
     ARIMAForecaster,
     AutoARIMAForecaster,
+    ChronosForecaster,
     DeepARForecaster,
     DriftForecaster,
     ETSForecaster,
@@ -28,6 +29,7 @@ __all__ = [
     "BacktestResult",
     "Backtester",
     "BaseForecaster",
+    "ChronosForecaster",
     "DeepARForecaster",
     "DriftForecaster",
     "ETSForecaster",
@@ -46,5 +48,6 @@ __all__ = [
     "rmse",
     "smape",
 ]
+
 
 
