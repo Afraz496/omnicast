@@ -47,7 +47,7 @@ lstm
 auto_forecaster
 ```
 
-## Real-data walkthrough
+## Real-data Walkthrough & Tutorials
 
 Every page above uses the synthetic series generated above, chosen for compact,
 exactly reproducible output. For a longer, end-to-end walkthrough on a real
@@ -61,5 +61,6 @@ with plots.
 ```{toctree}
 :maxdepth: 1
 
+ensemble_forecaster
 epidatpy_forecasting_and_plotting
 ```
